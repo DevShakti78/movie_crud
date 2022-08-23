@@ -4,14 +4,14 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
-
+var cors = require("cors")
 var fs = require('fs');
 var path = require('path');
 require('dotenv/config');
 var imgModel = require('./model');
 
 // Step 2 - connect to the database
-
+app.use(cors())
 mongoose.connect(process.env.MONGO_URL,
 	{ useNewUrlParser: true, useUnifiedTopology: true }, err => {
 		console.log('connected')
@@ -72,15 +72,17 @@ app.post('/', upload.single('image'), (req, res, next) => {
 			contentType: 'image/png'
 		}
 	}
-	imgModel.create(obj, (err, item) => {
+	var moviesdata = imgModel.create(obj, (err, item) => {
 		if (err) {
 			console.log(err);
 		}
 		else {
-			// item.save();
+			item.save();
 			res.redirect('/');
+			
 		}
 	});
+
 });
 app.get('/delete/(:id)', function(req, res, next) {
     imgModel.findByIdAndRemove(req.params.id, (err, doc) => {
@@ -91,5 +93,16 @@ app.get('/delete/(:id)', function(req, res, next) {
         }
     });
 })
+app.get('/edit/(:id)', function(req, res, next){
+   
+	imgModel.findById(req.params.id, (err, items) => {
+	if (!err) {
+		res.render("edit", { items: items });
+	}else{
+		req.flash('error', 'User not found with id = ' + req.params.id)
+		res.redirect('/')
+	}
+});
 
+})
 

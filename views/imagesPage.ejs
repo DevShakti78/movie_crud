@@ -5,9 +5,80 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Movie Dashboard</title>
-    <style>
-      
-    </style>
+	<style>
+		input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input{
+	width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+		table {
+		  border-collapse: collapse;
+		  width: 90%;
+		  align-items: center;
+		  margin-left: 70px;
+		}
+		
+		th, td {
+		  text-align: left;
+		  padding: 8px;
+		}
+		
+		tr:nth-child(even){background-color: #f2f2f2}
+		
+		th {
+			height: 70px;
+		  background-color: #04AA6D;
+		  color: white;
+		  width: 100px;
+		}
+		tr{
+			width: 150px;
+
+		}
+		</style>
 </head>
 
 <body>
@@ -15,52 +86,52 @@
 	<hr>
 	<div>
 		<form action="/" method="POST" id="update_movie" enctype="multipart/form-data">
-			<div>
+			
 				<label for="name">Movie name</label>
 				<input type="text" id="name" placeholder="Movie Name"
 					value="" name="name" required>
-			</div>
-			<div>
+			
+			
 				<label for="catog">Catogory</label>
 				<input type="text" id="catog" placeholder="Enter Catogory"
 					value="" name="catog" required>
-			</div>
-			<div>
+			
+			
 				<label for="rating">Rating</label>
 				<input type="number" id="rating" placeholder="enter rating"
 					value="" name="rating" required>
-			</div>
-			<div>
+			
+			
 				<label for="votes">votes</label>
 				<input type="number" id="votes" placeholder="enter votes"
 					value="" name="votes" required>
-			</div>
-			<div>
+			
+			
 				<label for="rdate">Relase date</label>
 				<input type="date" id="rdate" placeholder="release date"
 					value="" name="rdate" required>
-			</div>
-			<div>
+			
+			
 				<label for="desc">Image Description</label>
 				<textarea id="desc" name="desc" value=""
 						placeholder="Description" required>
 				</textarea>
-			</div>
-			<div>
+			
+			
 				<label for="image">Upload Image</label>
 				<input type="file" id="image"
 					name="image" value="" required>
-			</div>
-			<div>
+			
+			
 				<button type="submit">Submit</button>
-			</div>
+			
 		</form>
 	</div>
 
 	<hr>
 
 	<h1>Uploaded Movies</h1>
-	<div>
+	
         <table>
             <tr>
                 <th>Name</th>
@@ -74,7 +145,7 @@
                 <th>delete</th>
             </tr>
 		<% items.forEach(function(image) { %>
-		<div>
+		
            
                 <tr>
                     <td><%= image.name %></td>
@@ -85,7 +156,9 @@
                     <td><%= image.desc %></td>
                     <td><img style="width: 50px;" src="data:image/<%=image.img.contentType%>;base64,
                         <%=image.img.data.toString('base64')%>"></td>
-                    <td><button>update</button></td>
+						<td>
+							<a href="../edit/<%= image._id%>">edit</a>
+						</td>
                     <td>
 						<a href="../delete/<%= image._id%>">delete</a>
 					</td>
@@ -95,17 +168,12 @@
                     
                     
                   </tr>
+				  <% }) %>
             </table>
-			<div>
-				
-
-
-
-				</div>
-			</div>
-		</div>
-		<% }) %>
-	</div>
+			
+		
+	
+	
 </body>
 
 </html>
