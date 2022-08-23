@@ -5,48 +5,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input{
+	width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+    </style>
 </head>
 <body>
+    <div>
     <form action="/edit" method="post" enctype="multipart/form-data">
-        <div>
+        
             <label for="name">Movie name</label>
             <input type="text" id="name" placeholder="Movie Name"
                 value="<%= items.name %>" name="name" required>
-        </div>
-        <div>
+        
+        
             <label for="catog">Catogory</label>
             <input type="text" id="catog" placeholder="Enter Catogory"
                 value="<%= items.catog %>" name="catog" required>
-        </div>
-        <div>
+        
+        
             <label for="rating">Rating</label>
             <input type="number" id="rating" placeholder="enter rating"
                 value="<%= items.rating %>" name="rating" required>
-        </div>
-        <div>
+        
+        
             <label for="votes">votes</label>
             <input type="number" id="votes" placeholder="enter votes"
                 value="<%= items.votes %>" name="votes" required>
-        </div>
-        <div>
+        
+        
             <label for="rdate">Relase date</label>
             <input type="date" id="rdate" placeholder="release date"
                 value="<%= items.rdate %>" name="rdate" required>
-        </div>
-        <div>
+        
+        
             <label for="desc">Image Description</label>
             <input id="desc" name="desc" value="<%= items.desc %>"
                     placeholder="Description" required>
             </input>
-        </div>
-        <div>
+        
+        
             <label for="image">Upload Image</label>
             <input type="file" id="image"
                 name="image" value="" required>
-        </div>
-        <div>
+        
+        
             <button type="submit">Submit</button>
-        </div>
+        
     </form>
+</div>
 </body>
 </html>
