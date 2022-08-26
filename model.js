@@ -6,6 +6,7 @@ var imageSchema = new mongoose.Schema({
 	name: String,
 	desc: String,
     catog: String,
+	subcatogory:String,
 	rating: Number,
 	votes: Number,
 	rdate:String,
