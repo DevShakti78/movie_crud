@@ -11,12 +11,13 @@ console.log(pageNumbers)
   return (
    
    <div>
-   <ul>{
+   <ul style={{overflow:"hidden"}}>{
     
 pageNumbers.map((pagevalue)=>{
     return (
-        <li>
-            <a onClick={()=>paginate(pagevalue)} href="#!">{pagevalue}</a>
+        <li style={{display:"inline",gap:"3px"}}>
+            <span><a onClick={()=>paginate(pagevalue)} href="#!">{pagevalue}</a></span>
+            
         </li>
     )
 })
