@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Post from './Post';
 import "./showmovie.css"
 import Paginations from './Pagination';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Showmovies = () => {
-
+  const {isAuthenticated} = useAuth0()
   const [movies, setMovies] = useState({});
   const [base, setBase] = useState("")
   const [loading,setLoading] = useState(false);
@@ -46,12 +47,15 @@ console.log("Movies",movies)
 
 
  return (
-  <>
-<h1>Movie Detail page</h1>
-
-<Post movies={currentPost}/>
-<Paginations postPerPage={postPerPage} totalPost={movies.length} paginate={paginate}/>
-</>
+  isAuthenticated && (
+    <>
+    <h1>Movie Detail page</h1>
+    
+    <Post movies={currentPost}/>
+    <Paginations postPerPage={postPerPage} totalPost={movies.length} paginate={paginate}/>
+    </>
+)
+  
  )
  }
 }
